@@ -1,9 +1,12 @@
-public class InfoDesk extends BankService { //стойка информации
+import java.util.List;
+import java.util.Random;
+
+public class InfoDesk { //стойка информации
 
     private String ticket;
     private String uslugaType;
 
-    public InfoDesk(String ticket, String uslugaType){
+    public InfoDesk(String ticket, String uslugaType) {
         this.ticket = ticket;
         this.uslugaType = uslugaType;
     }
@@ -11,8 +14,12 @@ public class InfoDesk extends BankService { //стойка информации
     public static void main(String[] args) {
 
         BankService bankService = new BankService();
-
-        String [] newArray = bankService.getArrayServices();
+        Kassa kassa = new Kassa();
+        String data = "11/05/22";
+        kassa.giveMeCashReceiptOnDate(data);
+        System.out.println("Chek on date " + data + ":");
+        process(kassa.getChekOnData());
+    /*    String [] newArray = bankService.getArrayServices();
         for (int i = 0; i < 5; i++)
             System.out.println(newArray[i]);
 
@@ -30,10 +37,9 @@ public class InfoDesk extends BankService { //стойка информации
             System.out.println(newArray[i]);
             i--;
         }
-        while (i >= 0);
+        while (i >= 0);*/
 
     }
-
     public String getTicket() {
         return ticket;
     }
@@ -41,7 +47,17 @@ public class InfoDesk extends BankService { //стойка информации
     public String getUslugaType() {
         return uslugaType;
     }
+
+    private static void process(List<CashReceipt> chekOnData) {
+        while (chekOnData.size() > 0) {
+            CashReceipt cR = chekOnData.get(0);
+            System.out.println(cR);
+            chekOnData.remove(cR);
+        }
+    }
 }
+
+
 
 
 
