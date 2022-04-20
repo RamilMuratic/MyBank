@@ -1,3 +1,7 @@
+package ru.myBank.service;
+
+import ru.myBank.model.Client;
+
 public class BankService {
 
     private String[] arrayServices = {"Ритейл", "Фондовые услуги", "Пенсионные услуги", "Ипотечные услуги", "Кредитование"};
