@@ -1,3 +1,5 @@
+package ru.myBank.model;
+
 public class CashReceipt {//чек
 
     private String cashReceiptNumber;
@@ -25,7 +27,7 @@ public class CashReceipt {//чек
 
     @Override
     public String toString() {
-        return "CashReceipt{" +
+        return "ru.myBank.model.CashReceipt{" +
                 "cashReceiptNumber='" + cashReceiptNumber + '\'' +
                 ", cardHolderNumber=" + cardHolderNumber +
                 ", dateOfOperation='" + dateOfOperation + '\'' +

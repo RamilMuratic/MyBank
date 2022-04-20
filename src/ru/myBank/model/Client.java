@@ -1,3 +1,5 @@
+package ru.myBank.model;
+
 public class Client {
 
 
