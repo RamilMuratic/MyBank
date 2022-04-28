@@ -7,7 +7,10 @@ import ru.myBank.model.Kassa;
 //import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
+
+import ru.myBank.service.BankService;
 
 public class InfoDesk { //стойка информации
 
@@ -20,10 +23,7 @@ public class InfoDesk { //стойка информации
     }
 
     public static void main(String[] args) {
-
         BankService bankService = new BankService();
-        Kassa kassa = new Kassa();
-        ATM atm = new ATM();
 
      /*   String data = "11/05/22";
         kassa.giveMeCashReceiptOnDate(data);
@@ -49,12 +49,11 @@ public class InfoDesk { //стойка информации
             i--;
         }
         while (i >= 0);*/
-        Map<String,ATM> map = new HashMap<>();   //пример реализации Мар'а со связью ключ-Мар
-
+        Map<String, ATM> map = new HashMap<>();   //пример реализации Мар'а
         populateMap(map);
-
-       ATM a = map.get("Вин-код производителя: 1532");
+        ATM a = map.get("Вин-код производителя: 1532");
         System.out.println(a.toString());
+        bankService.readAndWright();
     }
 
     private static void populateMap(Map<String, ATM> myMap) {
