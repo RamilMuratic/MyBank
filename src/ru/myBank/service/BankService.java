@@ -64,9 +64,13 @@ public class BankService {
         System.out.println("Укажите имя файла:");
 
         String fileName = sc.next();
+
+        System.out.println("Укажите id клиента:");
+
+        String clientID = "clientID: "+sc.next()+" ";
         try (BufferedReader br = new BufferedReader(new FileReader(CATALOG_NAME + fileName))) {
 
-            List<Client> listOfClient = new ArrayList<>();
+            List<String> listOfClient = new ArrayList<>();
 
             String s;
             while ((s = br.readLine()) != null) {
@@ -74,17 +78,22 @@ public class BankService {
                listOfClient.add(s);
 
             }
-            for (String id : listOfClient) {
-                if (id.equals(sc)) {
+            boolean findsuccess = false;
+           for (String id : listOfClient) {
+                if (id.indexOf(clientID)!=-1) {
                     System.out.println(id);
+                    findsuccess = true;
                 }
             }
+           if (findsuccess!=true){
+               System.out.println("Клиент не найден");
+           }
 
 
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println(fileName + "в базе не найден(а)," + " введи имя повторно.");
+            System.out.println(fileName + "файл пуст или не найден." + " Введите повторно.");
             dbRead(sc);
         }
     }
