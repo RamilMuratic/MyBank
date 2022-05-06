@@ -1,5 +1,6 @@
 package ru.myBank.model;
 
+
 import java.util.Objects;
 
 public class ATM {
@@ -47,4 +48,6 @@ public class ATM {
                 ", bankomatLocation='" + bankomatLocation + '\'' +
                 '}';
     }
+
+
 }

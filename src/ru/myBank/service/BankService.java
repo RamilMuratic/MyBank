@@ -17,6 +17,8 @@ public class BankService {
 
     private static String CATALOG_NAME = "files/";
 
+
+
     private Client Client1 = new Client("92154785", 1, "Вася", 1212);
     private Client Client2 = new Client("45635463", 2, "Федя", 2222);
     private Client Client3 = new Client("69868688", 13, "Коля", 3232);
@@ -60,43 +62,68 @@ public class BankService {
         }
     }
 
-    private static void dbRead(Scanner sc) {
+    private static void dbRead(Scanner sc)  {
+
         System.out.println("Укажите имя файла:");
 
         String fileName = sc.next();
 
         System.out.println("Укажите id клиента:");
 
-        String clientID = "clientID: "+sc.next()+" ";
-        try (BufferedReader br = new BufferedReader(new FileReader(CATALOG_NAME + fileName))) {
+        String FindId = sc.next();
 
-            List<String> listOfClient = new ArrayList<>();
+        try  {
+            processClientID(FindId);
 
-            String s;
-            while ((s = br.readLine()) != null) {
+            String clientID = "clientID: "+FindId+" ";
+            try (BufferedReader br = new BufferedReader(new FileReader(CATALOG_NAME + fileName))) {
 
-               listOfClient.add(s);
+                List<String> listOfClient = new ArrayList<>();
 
-            }
-            boolean findsuccess = false;
-           for (String id : listOfClient) {
-                if (id.indexOf(clientID)!=-1) {
-                    System.out.println(id);
-                    findsuccess = true;
+                String s;
+                while ((s = br.readLine()) != null) {
+
+                    listOfClient.add(s);
+
                 }
+                boolean findSuccess = false;
+                for (String id : listOfClient) {
+                    if (id.indexOf(clientID)!=-1) {
+                        System.out.println(id);
+                        findSuccess = true;
+                    }
+                }
+                if (findSuccess!=true){
+                    System.out.println("Клиент не найден");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println(fileName + " файл пуст или не найден." + " Введите повторно.");
+                dbRead(sc);
             }
-           if (findsuccess!=true){
-               System.out.println("Клиент не найден");
-           }
 
+        } catch (ClientIdInvalidException e) {
 
-
-        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Номер clientID: " + e.getClientID());
             e.printStackTrace();
-            System.out.println(fileName + "файл пуст или не найден." + " Введите повторно.");
-            dbRead(sc);
+
         }
+
+
     }
+    private static boolean processClientID(String clientID) throws ClientIdInvalidException {
+
+        if (clientID.length() > 10) {
+            throw new ClientIdInvalidException("Введенный id превышает 10 символов: " + clientID.length(), clientID);
+        } else if (clientID.length() < 10) {
+            throw new ClientIdInvalidException("Введенный id меньше 10 символов: " + clientID.length(), clientID);
+        }
+        return false;
+    }
+
+
 
 /*
     private static Client addClient() {
