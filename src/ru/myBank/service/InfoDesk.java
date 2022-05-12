@@ -1,5 +1,6 @@
 package ru.myBank.service;
 
+import ru.myBank.databases.BankOperationsDb;
 import ru.myBank.model.ATM;
 import ru.myBank.model.CashReceipt;
 import ru.myBank.model.Kassa;
@@ -24,6 +25,7 @@ public class InfoDesk { //стойка информации
 
     public static void main(String[] args) {
         BankService bankService = new BankService();
+        BankOperationsDb bankOperationsDb = null;
 
      /*   String data = "11/05/22";
         kassa.giveMeCashReceiptOnDate(data);
@@ -54,6 +56,7 @@ public class InfoDesk { //стойка информации
         ATM a = map.get("Вин-код производителя: 1532");
         System.out.println(a.toString());
         bankService.readAndWright();
+        bankOperationsDb.getInstance();
     }
 
     private static void populateMap(Map<String, ATM> myMap) {
