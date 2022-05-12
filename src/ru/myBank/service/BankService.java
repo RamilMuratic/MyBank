@@ -18,7 +18,6 @@ public class BankService {
     private static String CATALOG_NAME = "files/";
 
 
-
     private Client Client1 = new Client("92154785", 1, "Вася", 1212);
     private Client Client2 = new Client("45635463", 2, "Федя", 2222);
     private Client Client3 = new Client("69868688", 13, "Коля", 3232);
@@ -45,6 +44,7 @@ public class BankService {
     private static void dbWrite(Scanner sc) {
         System.out.println("Укажите имя файла:");
         String fileName = sc.next();
+
         try (FileWriter fw = new FileWriter(CATALOG_NAME + fileName, true)) {
             System.out.println("Введите ФИО: " + sc.nextLine());
             fw.write("fio: " + sc.nextLine() + " "); //
