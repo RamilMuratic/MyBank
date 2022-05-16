@@ -1,7 +1,4 @@
 package ru.myBank.model;
-
-import ru.myBank.model.CashReceipt;
-
 import java.util.ArrayList;
 import java.util.List;
 

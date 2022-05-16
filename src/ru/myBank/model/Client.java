@@ -2,7 +2,6 @@ package ru.myBank.model;
 
 public class Client {
 
-
     private int clientId;
     private String passportNumber;
     private String fio;
@@ -49,7 +48,5 @@ public class Client {
     public Client() {
 
     }
-
-
 }
 
